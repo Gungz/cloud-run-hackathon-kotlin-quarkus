@@ -30,11 +30,25 @@ class App {
     @Consumes(MediaType.APPLICATION_JSON)
     fun index(arenaUpdate: ArenaUpdate?): String {
         println(arenaUpdate)
-        println(arenaUpdate?._links?.self)
-        for((k, v) in arenaUpdate?.arena?.state.orEmpty()) {
-            println("$k = $v")
-        }
+        val myState = arenaUpdate?.arena?.state?.get(arenaUpdate?._links?.self?.href)
         val commands = arrayOf("F", "R", "L", "T")
+        for((k, v) in arenaUpdate?.arena?.state.orEmpty()) {
+            if (v.x == myState.x) {
+                val distance = v.y - myState.y
+                if (distance <= 3 && distance > 0 && myState.direction == "S") {
+                    return commands[3]
+                } else if (distance >= -3 && distance < 0 && myState.direction == "N") {
+                    return commands[3]
+                }
+            } else if (v.y == myState.y) {
+                val distance = v.x - myState.x
+                if (distance <= 3 && distance > 0 && myState.direction == "E") {
+                    return commands[3]
+                } else if (distance >= -3 && distance < 0 && myState.direction == "W") {
+                    return commands[3]
+                }
+            }
+        }
         val i = Random().nextInt(4)
         return commands[i]
     }
