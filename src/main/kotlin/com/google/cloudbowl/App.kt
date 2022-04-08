@@ -32,19 +32,19 @@ class App {
         println(arenaUpdate)
         val myState = arenaUpdate?.arena?.state?.get(arenaUpdate?._links?.self?.href)
         val commands = arrayOf("F", "R", "L", "T")
-        for((k, v) in arenaUpdate?.arena?.state.orEmpty()) {
-            if (v.x == myState.x) {
-                val distance = v.y - myState.y
-                if (distance <= 3 && distance > 0 && myState.direction == "S") {
+        for((k, v) in arenaUpdate?.arena?.state?.orEmpty()) {
+            if (v?.x == myState?.x) {
+                val distance = v?.y - myState?.y
+                if (distance <= 3 && distance > 0 && myState?.direction == "S") {
                     return commands[3]
-                } else if (distance >= -3 && distance < 0 && myState.direction == "N") {
+                } else if (distance >= -3 && distance < 0 && myState?.direction == "N") {
                     return commands[3]
                 }
-            } else if (v.y == myState.y) {
-                val distance = v.x - myState.x
-                if (distance <= 3 && distance > 0 && myState.direction == "E") {
+            } else if (v?.y == myState?.y) {
+                val distance = v?.x - myState?.x
+                if (distance <= 3 && distance > 0 && myState?.direction == "E") {
                     return commands[3]
-                } else if (distance >= -3 && distance < 0 && myState.direction == "W") {
+                } else if (distance >= -3 && distance < 0 && myState?.direction == "W") {
                     return commands[3]
                 }
             }
