@@ -32,6 +32,10 @@ class App {
         println(arenaUpdate)
         val myState = arenaUpdate?.arena?.state?.get(arenaUpdate?._links?.self?.href)
         val commands = arrayOf("F", "R", "L", "T")
+        val i = Random().nextInt(4)
+        if (myState?.wasHit) {
+            return commands[i]
+        }
         for((k, v) in arenaUpdate?.arena?.state.orEmpty()) {
             if (v?.x == myState?.x) {
                 val distance = v?.y - myState?.y
@@ -49,7 +53,6 @@ class App {
                 }
             }
         }
-        val i = Random().nextInt(4)
         return commands[i]
     }
 }
