@@ -30,7 +30,10 @@ class App {
     @Consumes(MediaType.APPLICATION_JSON)
     fun index(arenaUpdate: ArenaUpdate?): String {
         println(arenaUpdate)
-        println(arenaUpdate?.arena)
+        println(arenaUpdate?._links.self)
+        for((k, v) in arenaUpdate?.arena.state) {
+            println("$k = $v")
+        }
         val commands = arrayOf("F", "R", "L", "T")
         val i = Random().nextInt(4)
         return commands[i]
