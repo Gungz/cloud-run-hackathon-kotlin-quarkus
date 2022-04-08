@@ -31,7 +31,7 @@ class App {
     fun index(arenaUpdate: ArenaUpdate?): String {
         println(arenaUpdate)
         println(arenaUpdate?._links?.self)
-        for((k, v) in arenaUpdate?.arena?.state) {
+        for((k, v) in arenaUpdate?.arena?.state.orEmpty()) {
             println("$k = $v")
         }
         val commands = arrayOf("F", "R", "L", "T")
