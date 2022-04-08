@@ -32,7 +32,7 @@ class App {
         println(arenaUpdate)
         val myState = arenaUpdate?.arena?.state?.get(arenaUpdate?._links?.self?.href)
         val commands = arrayOf("F", "R", "L", "T")
-        for((k, v) in arenaUpdate?.arena?.state?.orEmpty()) {
+        for((k, v) in arenaUpdate?.arena?.state.orEmpty()) {
             if (v?.x == myState?.x) {
                 val distance = v?.y - myState?.y
                 if (distance <= 3 && distance > 0 && myState?.direction == "S") {
