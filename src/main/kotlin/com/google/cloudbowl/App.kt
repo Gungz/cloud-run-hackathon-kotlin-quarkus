@@ -33,7 +33,7 @@ class App {
         val myState = arenaUpdate?.arena?.state?.get(arenaUpdate?._links?.self?.href)
         val commands = arrayOf("F", "R", "L", "T")
         val i = Random().nextInt(4)
-        if (myState?.wasHit) {
+        if (myState?.wasHit == true) {
             return commands[i]
         }
         for((k, v) in arenaUpdate?.arena?.state.orEmpty()) {
