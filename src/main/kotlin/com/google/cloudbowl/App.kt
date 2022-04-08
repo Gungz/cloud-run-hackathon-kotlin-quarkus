@@ -30,8 +30,8 @@ class App {
     @Consumes(MediaType.APPLICATION_JSON)
     fun index(arenaUpdate: ArenaUpdate?): String {
         println(arenaUpdate)
-        println(arenaUpdate?._links.self)
-        for((k, v) in arenaUpdate?.arena.state) {
+        println(arenaUpdate?._links?.self)
+        for((k, v) in arenaUpdate?.arena?.state) {
             println("$k = $v")
         }
         val commands = arrayOf("F", "R", "L", "T")
